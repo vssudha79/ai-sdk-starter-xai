@@ -1,5 +1,5 @@
 "use client";
-import type { modelID } from "@/ai/providers";
+import { MODELS, type modelID } from "@/ai/providers";
 import {
   Select,
   SelectContent,
@@ -14,11 +14,6 @@ interface ModelPickerProps {
   setSelectedModel: (model: modelID) => void;
 }
 
-const MODELS: Record<modelID, string> = {
-  "grok-2-1212":
-    "Our flagship LLM that delivers unfiltered insights and raw intelligence",
-};
-
 export const ModelPicker = ({
   selectedModel,
   setSelectedModel,
@@ -31,7 +26,7 @@ export const ModelPicker = ({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {Object.entries(MODELS).map(([modelId]) => (
+            {MODELS.map((modelId) => (
               <SelectItem key={modelId} value={modelId}>
                 {modelId}
               </SelectItem>
