@@ -23,5 +23,16 @@ export async function POST(req: Request) {
     },
   });
 
-  return result.toDataStreamResponse({ sendReasoning: true });
+  return result.toDataStreamResponse({
+    sendReasoning: true,
+    getErrorMessage: (error) => {
+      if (error instanceof Error) {
+        if (error.message.includes("Rate limit")) {
+          return "Rate limit exceeded. Please try again later.";
+        }
+      }
+      console.error(error);
+      return "An error occurred.";
+    },
+  });
 }

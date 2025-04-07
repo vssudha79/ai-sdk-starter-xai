@@ -1,11 +1,16 @@
 import { xai } from "@ai-sdk/xai";
 import { customProvider } from "ai";
 
-// custom provider with different model settings:
+const languageModels = {
+  "grok-2-1212": xai("grok-2-1212"),
+};
+
 export const model = customProvider({
-  languageModels: {
-    "grok-2-1212": xai("grok-2-1212"),
-  },
+  languageModels,
 });
 
-export type modelID = Parameters<(typeof model)["languageModel"]>["0"];
+export type modelID = keyof typeof languageModels;
+
+export const MODELS = Object.keys(languageModels);
+
+export const defaultModel: modelID = "grok-2-1212";
