@@ -3,6 +3,10 @@ import { customProvider } from "ai";
 
 const languageModels = {
   "grok-2-1212": xai("grok-2-1212"),
+  "grok-3": xai("grok-3-latest"),
+  "grok-3-fast": xai("grok-3-fast-latest"),
+  "grok-3-mini": xai("grok-3-mini-latest"),
+  "grok-3-mini-fast": xai("grok-3-mini-fast-latest"),
 };
 
 export const model = customProvider({
@@ -13,4 +17,4 @@ export type modelID = keyof typeof languageModels;
 
 export const MODELS = Object.keys(languageModels);
 
-export const defaultModel: modelID = "grok-2-1212";
+export const defaultModel: modelID = "grok-3-mini";
